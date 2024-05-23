@@ -5,7 +5,7 @@ import { UserName, Guardian, LocalGuardian, Student} from './student.interface';
 const userNameSchema = new Schema<UserName>({
   firstName: {
     type: String,
-    required: true,
+    required: [true , "first name is required , please give it"],
   },
   middleName: {
     type: String,
@@ -63,18 +63,22 @@ const localGuradianSchema = new Schema<LocalGuardian>({
 });
 
 const studentSchema = new Schema<Student>({
-  id: { type: String },
+  id: { type: String , required : true , unique : true},
   name: {
     type : userNameSchema,
     required : true
   },
   gender: {
     type : String,
-    enum : ['male', 'female'],
+    enum : {
+        values: ['male', 'female' , 'other'],
+        message : `{VALUE} is required`
+
+    },
     required : true
   } ,
   dateOfBirth: { type: String },
-  email: { type: String, required: true },
+  email: { type: String, required: true , unique : true},
   contactNo: { type: String, required: true },
   emergencyContactNo: { type: String, required: true },
   bloogGroup: 
