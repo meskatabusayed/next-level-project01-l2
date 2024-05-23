@@ -14,12 +14,19 @@ export default tseslint.config(
     }
 },
 
+// {
+
+// extends : ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"]
+
+// },
+
   {
     rules: {
         "no-unused-vars": "error",
         "no-undef": "error",
         "prefer-const" : "error",
-        "no-console" : "warn"
+        "no-console" : "warn",
+        "no-unused-expressions" : "error"
     }
 },
 {
