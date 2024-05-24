@@ -93,7 +93,7 @@ const studentSchema = new Schema<TStudent, StudentModel>({
   password: {
     type: String,
     required: [true, 'Password is required.'],
-    unique: true,
+    
   },
   name: {
     type: userNameSchema,
@@ -165,8 +165,10 @@ studentSchema.pre('save' ,async function(next){
  next();
 })
 
-studentSchema.post('save' , function(){
-  console.log(this , 'post hook : After save');
+studentSchema.post('save' , function(doc , next){
+  doc.password = ''
+  console.log("password hashing done");
+  next();
 })
 
 //create custom static method
