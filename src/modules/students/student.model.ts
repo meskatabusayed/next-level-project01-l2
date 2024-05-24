@@ -8,24 +8,24 @@ const userNameSchema = new Schema<UserName>({
       type: String,
       required: [true, "First name is required."],
       trim : true,
-      maxlength: 20,
-      validate : {
-        validator : function(value : any){
-          const firstNameStr = value.charAt(0).toUpperCase() + value.slice(1);
-          return firstNameStr === value;
-        },
-        message : "{VALUE}  is capitalize needed"
-      }
+      // maxlength: 20,
+      // validate : {
+      //   validator : function(value : any){
+      //     const firstNameStr = value.charAt(0).toUpperCase() + value.slice(1);
+      //     return firstNameStr === value;
+      //   },
+      //   message : "{VALUE}  is capitalize needed"
+      // }
     },
     middleName: String,
     lastName: {
       type: String,
       required: [true, "Last name is required."],
-      validate : {
-        validator: (value : string) => validator.isAlpha(value),
-        message : "{VALUE} is not valid"
+      // validate : {
+      //   validator: (value : string) => validator.isAlpha(value),
+      //   message : "{VALUE} is not valid"
 
-      }
+      // }
     },
   });
   
