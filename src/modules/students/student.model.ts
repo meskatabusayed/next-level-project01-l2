@@ -1,13 +1,16 @@
 import { Schema, model } from 'mongoose';
+import bcrypt from 'bcrypt';
 import {
   TUserName,
   TGuardian,
   TLocalGuardian,
   TStudent,
-  TStudentModel,
-  TStudentMethods,
+  
+  StudentModel,
 } from './student.interface';
 import validator from 'validator';
+import { Model } from 'mongoose';
+import config from '../../app/config';
 
 const userNameSchema = new Schema<TUserName>({
   firstName: {
@@ -81,10 +84,15 @@ const localGuradianSchema = new Schema<TLocalGuardian>({
   },
 });
 
-const studentSchema = new Schema<TStudent, TStudentModel, TStudentMethods>({
+const studentSchema = new Schema<TStudent, StudentModel>({
   id: {
     type: String,
     required: [true, 'Student ID is required.'],
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: [true, 'Password is required.'],
     unique: true,
   },
   name: {
@@ -149,9 +157,32 @@ const studentSchema = new Schema<TStudent, TStudentModel, TStudentMethods>({
   },
 });
 
-studentSchema.methods.isUserExists = async function (id: string) {
-  const existUser = await Student.findOne({ id });
-  return existUser;
-};
+//create pre middleware / hook
+studentSchema.pre('save' ,async function(next){
+  // console.log(this , "Pre Hook : Before save");
+  const user = this;
+ user.password = await bcrypt.hash(user.password, Number(config.bcrypt_salt_round));
+ next();
+})
 
-export const Student = model<TStudent, TStudentModel>('Student', studentSchema);
+studentSchema.post('save' , function(){
+  console.log(this , 'post hook : After save');
+})
+
+//create custom static method
+studentSchema.statics.isUserExists = async function(id : string){
+  const existUser = await Student.findOne({id});
+  return existUser;
+}
+
+
+
+//create custom instance method
+// studentSchema.methods.isUserExists = async function (id: string) {
+//   const existUser = await Student.findOne({ id });
+//   return existUser;
+// };
+
+export const Student = model<TStudent, StudentModel>('Student', studentSchema);
+
+
