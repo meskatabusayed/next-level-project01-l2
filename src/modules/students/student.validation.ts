@@ -56,6 +56,7 @@ const studentSchema = Joi.object({
     .valid('active', 'blocked')
     .default('active')
     .required(),
+  isDeleted : Joi.boolean(),
 });
 
 export default studentSchema;
