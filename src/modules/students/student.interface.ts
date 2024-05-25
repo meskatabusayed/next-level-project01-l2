@@ -2,7 +2,7 @@ import { Model } from 'mongoose';
 
 export type TUserName = {
   firstName: string;
-  middleName: string;
+  middleName?: string;
   lastName: string;
 };
 
@@ -26,7 +26,7 @@ export type TStudent = {
   id: string;
   password : string;
   name: TUserName;
-  gender: 'male' | 'female';
+  gender: 'male' | 'female' | 'other';
   dateOfBirth?: string;
   email: string;
   contactNo: string;
