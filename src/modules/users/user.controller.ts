@@ -1,8 +1,8 @@
-import { NextFunction, Request, Response } from "express";
+import {  RequestHandler,} from "express";
 import { userServices } from "./user.service";
 
 
-const createStudentInDb = async (req: Request, res: Response , next : NextFunction) => {
+const createStudentInDb  : RequestHandler = async (req, res, next) => {
     try {
         const{password , student : studentData} = req.body;
       

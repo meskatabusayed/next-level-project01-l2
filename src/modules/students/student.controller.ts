@@ -1,11 +1,11 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, Request, RequestHandler, Response } from 'express';
 import { StudentServices } from './student.services';
 
 
 
 
 
-const getAllStudents = async (req: Request, res: Response , next : NextFunction) => {
+const getAllStudents : RequestHandler = async (req, res, next) => {
   try {
     const result = await StudentServices.getAllStudentsFromDB();
 
@@ -19,7 +19,7 @@ const getAllStudents = async (req: Request, res: Response , next : NextFunction)
   }
 };
 
-const getSingleStudent = async (req: Request, res: Response , next:NextFunction) => {
+const getSingleStudent  : RequestHandler = async (req, res, next) => {
   try {
     const { studentId } = req.params;
 
@@ -34,7 +34,7 @@ const getSingleStudent = async (req: Request, res: Response , next:NextFunction)
     next(err);
   }
 };
-const deleteStudent = async (req: Request, res: Response , next:NextFunction) => {
+const deleteStudent  : RequestHandler = async (req, res, next) => {
   try {
     const { studentId } = req.params;
 
