@@ -1,16 +1,16 @@
 import { Schema, model } from 'mongoose';
-import bcrypt from 'bcrypt';
+
 import {
   TUserName,
   TGuardian,
   TLocalGuardian,
   TStudent,
   
-  StudentModel,
+  
 } from './student.interface';
 import validator from 'validator';
-import { Model } from 'mongoose';
-import config from '../../app/config';
+
+
 
 const userNameSchema = new Schema<TUserName>({
   firstName: {
@@ -84,17 +84,19 @@ const localGuradianSchema = new Schema<TLocalGuardian>({
   },
 });
 
-const studentSchema = new Schema<TStudent, StudentModel>({
+const studentSchema = new Schema<TStudent>({
   id: {
     type: String,
     required: [true, 'Student ID is required.'],
     unique: true,
   },
-  password: {
-    type: String,
-    required: [true, 'Password is required.'],
-    
+  user : {
+    type : Schema.Types.ObjectId,
+    required : [true , 'user id must be required'],
+    unique: true,
+    ref : 'User'
   },
+  
   name: {
     type: userNameSchema,
     required: [true, 'Student name is required.'],
@@ -149,12 +151,7 @@ const studentSchema = new Schema<TStudent, StudentModel>({
     required: [true, 'Local guardian information is required.'],
   },
   profileImg: String,
-  isActive: {
-    type: String,
-    enum: ['active', 'blocked'],
-    default: 'active',
-    required: true,
-  },
+  
   isDeleted : {
     type : Boolean,
     default : false
@@ -168,23 +165,12 @@ const studentSchema = new Schema<TStudent, StudentModel>({
 );
 
 //virtual
-studentSchema.virtual("fullname").get(function(){
-  return this.name.firstName + this.name.middleName + this.name.lastName;
-})
+// studentSchema.virtual("fullname").get(function(){
+//   return this.name.firstName + this.name.middleName + this.name.lastName;
+// })
 
 //create pre middleware / hook
-studentSchema.pre('save' ,async function(next){
-  // console.log(this , "Pre Hook : Before save");
-  const user = this;
- user.password = await bcrypt.hash(user.password, Number(config.bcrypt_salt_round));
- next();
-})
 
-studentSchema.post('save' , function(doc , next){
-  doc.password = ''
-  console.log("password hashing done");
-  next();
-})
 //query middleware
 studentSchema.pre('find' , function(next){
   this.find({isDeleted : {$ne : true}})
@@ -215,6 +201,6 @@ studentSchema.statics.isUserExists = async function(id : string){
 //   return existUser;
 // };
 
-export const Student = model<TStudent, StudentModel>('Student', studentSchema);
+export const Student = model<TStudent>('Student', studentSchema);
 
 

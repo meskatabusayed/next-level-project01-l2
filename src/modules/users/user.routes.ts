@@ -7,4 +7,4 @@ const router = express.Router();
 router.post('/create-user', UserControllers.createStudentInDb);
 
 
-export const StudentRoutes = router;
+export const UserRoutes = router;

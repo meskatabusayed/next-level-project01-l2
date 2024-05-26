@@ -1,7 +1,11 @@
-import express from 'express';
+import express, { NextFunction} from 'express';
 import { Request, Response } from 'express';
 import cors from 'cors';
 import { StudentRoutes } from './modules/students/student.route';
+import { UserRoutes } from './modules/users/user.routes';
+import { error } from 'console';
+import { globalError } from './app/middlewares/globalErrorHandler';
+import notFoundRoute from './app/middlewares/notFound';
 
 const app = express();
 
@@ -11,10 +15,15 @@ app.use(express.json())
 
 //application routes
 app.use("/api/v1/students" , StudentRoutes);
+app.use("/api/v1/users" , UserRoutes);
 
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!');
 });
+
+
+app.use(globalError.globalErrorHandler)
+app.use(notFoundRoute);
 
 export default app;

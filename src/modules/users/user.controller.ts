@@ -1,24 +1,20 @@
+import { NextFunction, Request, Response } from "express";
 import { userServices } from "./user.service";
-import userValidationSchema from "./user.zod.validation";
 
-const createStudentInDb = async (req: Request, res: Response) => {
+
+const createStudentInDb = async (req: Request, res: Response , next : NextFunction) => {
     try {
         const{password , student : studentData} = req.body;
       
-      //creating schema validation using zod
-    //   const zodParsedData = userValidationSchema.parse(usertData);
-      const result = await userServices.createUserIntoDB(password , studentData);
+     
+      const result = await userServices.createStudentIntoDB(password , studentData);
       res.status(200).json({
           success: true,
           message: 'Student is created succesfully',
           data: result,
         });
-    } catch (err : any) {
-      res.status(500).json({
-        success: false,
-        message: err.message ||  'Something went wrong',
-        error: err,
-      });
+    } catch (err) {
+      next(err);
     }
   };
 
