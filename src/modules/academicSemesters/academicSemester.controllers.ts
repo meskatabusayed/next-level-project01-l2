@@ -1,17 +1,15 @@
 import {  RequestHandler,} from "express";
+import { AcademicSemesterServices } from "./academicSemester.services";
 
 
 
 const createAcademicSemesterInDb  : RequestHandler = async (req, res, next) => {
     try {
-        const{password , student : studentData} = req.body;
-      
-     
-    //   const result = await userServices.createStudentIntoDB(password , studentData);
+      const result = await AcademicSemesterServices.createAcademicSemesterInDb(req.body);
       res.status(200).json({
           success: true,
-          message: 'Student is created succesfully',
-        //   data: result,
+          message: 'Academic Semester  is created succesfully',
+          data: result,
         });
     } catch (err) {
       next(err);
