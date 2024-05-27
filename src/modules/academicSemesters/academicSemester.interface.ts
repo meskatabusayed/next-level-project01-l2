@@ -1,9 +1,9 @@
-export type Month = "January" | "February" | "March" | "April" | "May" | "June" | "July" | "August" | "September" | "October" | "November" | "December";
+export type TMonth = "January" | "February" | "March" | "April" | "May" | "June" | "July" | "August" | "September" | "October" | "November" | "December";
 
-export type AcedemicSemester = {
-    name : string;
+export type TAcedemicSemester = {
+    name : "Autunm" | "summar" | "Fall";
     year : Date;
-    code : string;
-    startMonth : Month;
-    endMonth : Month;
+    code : "01" | "02" | "03";
+    startMonth : TMonth;
+    endMonth : TMonth;
 }
