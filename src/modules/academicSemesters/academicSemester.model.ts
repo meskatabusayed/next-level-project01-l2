@@ -14,7 +14,7 @@ const academicSemesterSchema = new Schema<TAcedemicSemester>({
         required : true,
     },
     year: {
-        type : Date,
+        type : String,
         required : true,
     },
     code : {
@@ -33,6 +33,20 @@ const academicSemesterSchema = new Schema<TAcedemicSemester>({
         
     },
     
+} , {
+    timestamps : true
+})
+
+academicSemesterSchema.pre('save', async function(next){
+    const isSemesterExists = await AcademicSemester.findOne({
+        year : this.year,
+        name : this.name
+    })
+
+    if(isSemesterExists){
+        throw new Error("Semester is Already Exists");
+    }
+    next();
 })
 
 

@@ -6,6 +6,7 @@ import { UserRoutes } from './modules/users/user.routes';
 import { error } from 'console';
 import { globalError } from './app/middlewares/globalErrorHandler';
 import notFoundRoute from './app/middlewares/notFound';
+import { academicSemesterRoutes } from './modules/academicSemesters/academicSemester.route';
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.json())
 //application routes
 app.use("/api/v1/students" , StudentRoutes);
 app.use("/api/v1/users" , UserRoutes);
+app.use("/api/v1/academic-semesters" , academicSemesterRoutes);
 
 
 app.get('/', (req: Request, res: Response) => {
