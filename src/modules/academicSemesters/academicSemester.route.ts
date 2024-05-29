@@ -6,9 +6,7 @@ import academicSemesterValidationSchema from './academicSemester.zod.validation'
 
 const router = express.Router();
 router.post('/create-academic-semester' , validateRequest(academicSemesterValidationSchema) , AcademicSemesterControllers.createAcademicSemesterInDb);
-// router.post('/create-student', StudentControllers.createStudent);
-// router.get('/', StudentControllers.getAllStudents);
-// router.get('/:studentId', StudentControllers.getSingleStudent);
-// router.delete('/:studentId', StudentControllers.deleteStudent);
+
+router.get('/', AcademicSemesterControllers.getAllAcademicSemesters);
 
 export const academicSemesterRoutes = router; 

@@ -16,7 +16,21 @@ const createAcademicSemesterInDb  : RequestHandler = async (req, res, next) => {
     }
   };
 
+  const getAllAcademicSemesters : RequestHandler = async (req, res , next) => {
+    try{
+    const result = await AcademicSemesterServices.getAllAcademicSemestersFromDB();
+    res.status(200).json({
+      success: true,
+      message: 'Academic Semester  is created succesfully',
+      data: result,
+    })
+    }catch(err){
+    next(err);
+  }}
+ 
+
   export const AcademicSemesterControllers = {
-    createAcademicSemesterInDb
+    createAcademicSemesterInDb,
+    getAllAcademicSemesters
   }
   
