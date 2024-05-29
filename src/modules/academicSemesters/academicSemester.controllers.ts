@@ -34,7 +34,11 @@ const createAcademicSemesterInDb  : RequestHandler = async (req, res, next) => {
     const { semesterId } = req.params;
     const result =
       await AcademicSemesterServices.getSingleAcademicSemesterFromDB(semesterId);
-  
+      res.status(200).json({
+        success: true,
+        message: 'fatch  Academic Semester',
+        data: result,
+      })
     }catch(err){
       next(err);
     }
