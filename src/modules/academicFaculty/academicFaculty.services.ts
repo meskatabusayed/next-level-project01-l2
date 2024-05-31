@@ -21,7 +21,7 @@ const createAcademicFacultyInDb = async (payload : TAcademicFaculty) => {
 //     return result;
 //   };
 
-export const AcademicSemesterServices = {
+export const AcademicFacultyServices = {
     createAcademicFacultyInDb 
 
 }
