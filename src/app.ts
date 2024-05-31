@@ -7,6 +7,7 @@ import { error } from 'console';
 import { globalError } from './app/middlewares/globalErrorHandler';
 import notFoundRoute from './app/middlewares/notFound';
 import { academicSemesterRoutes } from './modules/academicSemesters/academicSemester.route';
+import { academicFacultyRoutes } from './modules/academicFaculty/academicFaculty.route';
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(express.json())
 app.use("/api/v1/students" , StudentRoutes);
 app.use("/api/v1/users" , UserRoutes);
 app.use("/api/v1/academic-semesters" , academicSemesterRoutes);
+app.use("/api/v1/academic-faculties" , academicFacultyRoutes);
 
 
 app.get('/', (req: Request, res: Response) => {
