@@ -23,6 +23,7 @@ export const generateStudentId = async (payload : TAcedemicSemester) => {
     const lastStudentSemesterCode = lastStudentId?.substring(4 , 6);
     const lastStudentYear = lastStudentId?.substring(0 , 4);
     const currentSemesterCode = payload.code;
+    console.log(payload);
     const currentYear = payload.year;
     if(lastStudentId && lastStudentSemesterCode === currentSemesterCode && lastStudentYear === currentYear){
         currentId = lastStudentId.substring(6);
