@@ -8,7 +8,7 @@ import validateRequest from '../../app/middlewares/validateRequest';
 const router = express.Router();
 
 
-router.post('/create-user',validateRequest(studentValidations.studentValidationSchema), UserControllers.createStudentInDb);
+router.post('/create-student',validateRequest(studentValidations.studentValidationSchema), UserControllers.createStudentInDb);
 
 
 export const UserRoutes = router;
