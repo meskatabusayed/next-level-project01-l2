@@ -22,7 +22,7 @@ const createAcademicDepertmentInDb = async (payload : TAcademicDepertment) => {
 //     return result;
 //   };
 
-export const AcademicFacultyServices = {
+export const AcademicDepertmentServices = {
     createAcademicDepertmentInDb
 
 }
