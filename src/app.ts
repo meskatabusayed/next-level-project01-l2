@@ -20,6 +20,7 @@ app.use("/api/v1/students" , StudentRoutes);
 app.use("/api/v1/users" , UserRoutes);
 app.use("/api/v1/academic-semesters" , academicSemesterRoutes);
 app.use("/api/v1/academic-faculties" , academicFacultyRoutes);
+app.use("/api/v1/academic-depertments" , academicFacultyRoutes);
 
 
 app.get('/', (req: Request, res: Response) => {

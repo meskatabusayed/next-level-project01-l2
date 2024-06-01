@@ -48,7 +48,7 @@ const createAcademicDepertmentInDb  : RequestHandler = async (req, res, next) =>
 //   };
  
 
-  export const AcademicFacultyControllers = {
+  export const AcademicDepertmentControllers = {
     createAcademicDepertmentInDb,
    
   }
