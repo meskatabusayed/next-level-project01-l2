@@ -24,4 +24,4 @@ router.post('/create-academic-depertment' , validateRequest(academicDepertmentVa
 //     AcademicSemesterControllers.updateAcademicSemester,
 //   );
 
-export const academicFacultyRoutes = router; 
+export const academicDepertmentRoutes = router; 

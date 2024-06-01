@@ -11,7 +11,7 @@ const createAcademicDepertmentInDb  : RequestHandler = async (req, res, next) =>
       const result = await AcademicDepertmentServices.createAcademicDepertmentInDb(req.body);
       res.status(200).json({
           success: true,
-          message: 'Academic Faculty is created succesfully',
+          message: 'Academic depertment is created succesfully',
           data: result,
         });
     } catch (err) {
