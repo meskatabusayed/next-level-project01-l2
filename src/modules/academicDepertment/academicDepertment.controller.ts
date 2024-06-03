@@ -19,17 +19,17 @@ const createAcademicDepertmentInDb  : RequestHandler = async (req, res, next) =>
     }
   };
 
-//   const getAllAcademicSemesters : RequestHandler = async (req, res , next) => {
-//     try{
-//     const result = await AcademicSemesterServices.getAllAcademicSemestersFromDB();
-//     res.status(200).json({
-//       success: true,
-//       message: 'fach all Academic Semesters',
-//       data: result,
-//     })
-//     }catch(err){
-//     next(err);
-//   }}
+  const getAllAcademicDepertments : RequestHandler = async (req, res , next) => {
+    try{
+    const result = await AcademicDepertmentServices.getAllAcademicDepertmentsFromDB();
+    res.status(200).json({
+      success: true,
+      message: 'fach all Academic Depertment',
+      data: result,
+    })
+    }catch(err){
+    next(err);
+  }}
   
 //   const getSingleAcademicSemester : RequestHandler =  async(req, res , next) => {
     
@@ -50,6 +50,7 @@ const createAcademicDepertmentInDb  : RequestHandler = async (req, res, next) =>
 
   export const AcademicDepertmentControllers = {
     createAcademicDepertmentInDb,
+    getAllAcademicDepertments
    
   }
   

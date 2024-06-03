@@ -9,11 +9,11 @@ import academicDepertmentValidationSchema from './academicDepertment.validation'
 const router = express.Router();
 router.post('/create-academic-depertment' , validateRequest(academicDepertmentValidationSchema) , AcademicDepertmentControllers.createAcademicDepertmentInDb);
 
-// router.get('/', AcademicSemesterControllers.getAllAcademicSemesters);
+router.get('/', AcademicDepertmentControllers.getAllAcademicDepertments);
 
 // router.get(
 //     '/:semesterId',
-//     AcademicSemesterControllers.getSingleAcademicSemester,
+//     AcademicDepertmentControllers.getAllAcademicDepertments,
 //   );
 
 //   router.patch(
